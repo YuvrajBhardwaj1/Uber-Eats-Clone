@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Eats - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        nav{
+            background-color: black;
+            margin: 0px 0px;
+            height: 70px;
+        }
+        .heading{
+            display: flex;
+            justify-content: flex-start;
+            color: white;
+        }
+        .heading p{
+            margin-top: 20px;
+            margin-left: 50px;
+            font-size:25px;
+        }
+        .heading #greenFont{
+            color: #0bbb0b;
+            margin-left: 4px;
+        }
+        .mainSection{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            margin-top:20px;
+        }
+        .login{
+            display: grid;
+            row-gap: 10px;  
+        }                
+        input[type=text]{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;    
+            background-color: rgb(206 206 206);        
+            opacity: 50%;
+        }
+        .login button{
+            background-color: black;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 10px;
+        }
+        #row-heading{
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #row-heading #hr1{
+            color:blue;
+            width:150px;
+            margin-right: 10px;
+            color: grey;
+        }
+        #row-heading #hr2{
+            color:blue;
+            width:150px;
+            margin-left:10px;
+            color: grey;            
+        }
+        .loginButtons{
+            display: grid;
+            row-gap: 8px;
+        }
+        .loginButtons button{
+            background-color: rgb(206 206 206);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 10px;
+            color: black;
+            font-size: 15px;
+            text-align: center;
+        }
+        .login-QR button{
+            background-color: transparent;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 10px;
+            color: black;
+            font-size: 15px;
+        }
+        .login-QR button:hover{
+            background-color: rgb(206 206 206);
+        }
+        button img{
+            width: 18px;
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="heading">
+            <p>Uber </p><strong><p id="greenFont">Eats</p></strong>
+        </div>
+    </nav>
+
+    <section class="mainSection">
+        <h1>What's your phone number <br> or email?</h1>
+        <div class="login">            
+            <input type="text" placeholder="Enter phone number or email">
+            <button id="continue">Continue</button>
+        </div>
+        <div id="row-heading">
+            <hr id="hr1">
+            <p style="color: grey;">or</p>
+            <hr id="hr2">
+        </div>
+        <div class="loginButtons">
+            <button><img src="/images/google.png" alt="">Continue with Google</button>
+            <button><img src="/images/apple.png" alt="">Continue with Apple</button>
+            <button><img src="/images/facebook.jpg" alt="">Continue with Facebook</button>
+        </div>
+        <div id="row-heading">
+            <hr id="hr1">
+            <p style="color: grey;">or</p>
+            <hr id="hr2">
+        </div>
+        <div class="login-QR">
+            <button><img src="/images/qr-code.png" alt="">Log in with QR code</button>
+        </div>
+    </section>
+</body>
+</html>

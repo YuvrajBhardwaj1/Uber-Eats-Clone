@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Clone Website</title>
+    <style>
+        *{
+         margin: 0;
+         padding: 0;
+        }
+        .body{
+            background-image: url(https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/c413f20400e04805.webp);
+            background-size: 100%;
+            background-repeat:   no-repeat;
+            background-position: center center; 
+            height: 100vb;
+            font-family: 'Poppins', sans-serif;
+            color:black;       
+        }
+        nav{
+            display: flex;
+            justify-content: space-around;            
+            align-items: center;
+            margin: 0px 0px;
+            height: 40px;
+        }
+        nav #h1{
+            font-size: 2rem;
+            color: white;
+            margin-top: 30px;
+        }
+         .right #login{
+            /* padding: 12px;
+            background-color: white;
+            color: black;
+            border-radius: 42px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-top: 30px;
+            font-family: 'Poppins', sans-serif; */
+            
+    color: black;
+    border-radius: 25px;
+    padding: 10px 20px;
+    border: none;
+        }
+        .right #Signup{
+            padding: 20px;
+            background-color: black;
+            color: white;
+            margin-top: 40px;
+            border-radius: 82px;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        } 
+        .main{
+            margin: 140px 60px;
+            font-family: 'Poppins', sans-serif;
+            
+        }
+        #title{
+            font-size: 40px;
+            margin-bottom: 40px;
+            color: white;
+        }        
+        #searchInput{
+            width: 40%;
+            padding:20px;            
+        }
+        .time{
+            width: 12%;
+            padding:20px;  
+        }
+        .firstleft #search{
+            padding: 12px;
+            background-color: black;
+            color: white;
+            border-radius: 18px;
+            font-size: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        #signintitle{
+            color: white;
+            margin-top : 20px;
+        }
+        input[type="text"], select{
+            font-family: 'Poppins', sans-serif;
+        }                     
+
+        .photos{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .photos img{
+            width: 100%;
+        }
+        .photos1{
+            margin-left: 20px;
+            margin-right: 30px;
+        }
+        .photos2{
+            margin-right: 30px;
+        }
+        .photos3{
+            margin-right: 30px;
+        }
+        .gap1{
+            height: 80px;
+        }
+        .gap2{
+            height: 80px;
+        }
+        .photos a{
+            text-decoration: none;
+            color: black;
+        }
+
+        .photos1 p{
+            margin-top:10px;
+        }
+        .photos2 p{
+            margin-top:10px;
+        }
+        .photos3 p{
+            margin-top:10px;
+        }
+        .footer-class{
+            display: flex;
+            height: 250px;
+            margin-bottom:30px;
+        }
+        .leftSide{
+            display: flex;
+            margin: 40px 50px;
+            justify-content: space-between;
+        }
+        .linksfordownload{
+            display: flex;
+            margin-top: 160px;
+            margin-left: -149px;
+            gap:20px;
+
+        }
+        .rightSide{
+            margin-left : 250px;
+            margin-top : 50px;
+            display: grid;
+            row-gap: 5px;
+            
+        }
+        .rightSide a{
+           text-decoration: none;
+           color: black;
+           float: right;
+           font-family: 'Poppins', sans-serif;
+        }
+        .rightSideLinks{
+            margin-left : 150px;
+            margin-top : 50px;
+            display: grid;
+            row-gap: 5px;
+        }
+        .rightSideLinks a{
+           text-decoration: none;
+           color:black;
+           float: right;
+           font-family: 'Poppins', sans-serif;
+        }
+        #hr1{
+            width: 90%;
+            background-color: grey;
+            margin: 60px 60px;
+        }
+        .privacy{
+            display: flex;
+            gap: 10px;
+            justify-content: end;
+            margin-top:20px;
+            margin-bottom: 12px;
+            margin-right: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
+        .privacy a{
+            text-decoration: none;
+            color:black;            
+        }
+        .security{
+            display: flex;
+            justify-content: end;
+            gap: 5px;
+            margin-right: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
+        .security a{
+            text-decoration: none;
+            color: black;
+        }
+        .headingCountries{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            margin-left: 50px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .headingCountries a{
+            color: black;
+            margin-right:30px;
+        }
+        .ListCountries{
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            row-gap: 15px;
+            margin-left: 50px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .ListCountries a{
+            text-decoration: none;
+            color:black;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <main class="body">
+         <nav>
+            <!-- <div id="hamburger-menu">
+                <button class="hamburger-button"> ☰ </button>                     
+             </div>    -->
+             <h1 id="h1" style="color:black;">Uber Eats</h1>           
+            <div class="right">                
+                <button id="login" onclick="loginPage()">Login</button>
+                <button id="Signup" onclick="SignupPage()">Signup</button>
+            </div>
+         </nav>
+    
+
+    <section class="main">
+        <h1 id="title" style="color:black;">Order Delivery Near You.</h1>
+        <div class="firstleft">
+            <input id="searchInput" type="text" placeholder="Enter Delivery Address">
+            <select class="time" name="time">
+                <option value="DeliverNow"><span class="icon location-icon"></span>Deliver Now</option>
+                <option value="later">Schedule for later</option>
+            </select>
+            <button id="search" onclick="SearchRestaurant()">Search here</button>
+        </div>
+        <p id="signintitle">Or <a href="signup.html">Sign in.</a></p>
+    </section>
+</main>
+
+
+<section class="main1">
+
+    <div class="gap1"></div>
+    <div class="photos">
+        <a href="/index.html" ><div class="photos1">
+            <img src="/images/feedemployees.webp" alt="">
+            <h1>Feed your Employees</h1>
+            <p>Create a business account</p>
+        </div>
+        </a>
+        <a href="/index.html" ><div class="photos2">
+            <img src="/images/addRestaurant.webp" alt="">
+           <h1>Your Restaurant, Delievered</h1>
+           <p>Add your restaurant</p>
+        </div>
+        </a>
+        <a href="/index.html" ><div class="photos3">
+            <img src="/images/signupDeliever.webp" alt="">
+            <h1>Deliver with Uber Eats</h1>
+            <p>Sign up to deliver</p>
+        </div>
+        </a>
+    </div>
+    <div class="gap2"></div>
+    
+</section>
+
+<div class="countries">
+    <div class="headingCountries">
+        <h1>Countries With Uber Eats</h1>
+        <a href="">View all Countries</a>
+    </div>
+
+    <div class="ListCountries">
+        <a href="">Germany</a>
+        <a href="">Australia</a>
+        <a href="">Belgium</a>
+        <a href="">Canada</a>
+        <a href="">Chile</a>    
+        <a href="">Dominican Republic</a>    
+        <a href="">Costa Rica</a>
+        <a href="">Ecuador</a>
+        <a href="">El Salvador</a>
+        <a href="">France</a>        
+        <a href="">Guatemala</a>
+        <a href="">Ireland</a>
+        <a href="">Italy</a>
+        <a href="">Japan</a>
+        <a href="">Kenya</a>
+        <a href="">Mexico</a>
+        <a href="">Netherlands</a>
+        <a href="">New Zealand</a>
+        <a href="">Panama</a>
+        <a href="">Poland</a>
+        <a href="">Portugal</a>
+        <a href="">South Africa</a>
+        <a href="">Spain</a>
+        <a href="">Sri Lanka</a>
+        <a href="">Sweden</a>
+        <a href="">Switzerland</a>
+        <a href="">Taiwan (ROC)</a>
+        <a href="">United Kingdom</a>
+        <a href="">United States</a>
+    </div>
+
+</div>
+
+
+<hr id="hr1">
+
+<footer>
+    <div class="footer-class">
+    <div class="leftSide">
+        <img alt="Uber Eats" role="img" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/97c43f8974e6c876.svg" width="146" height="24">
+        <div class="linksfordownload">
+            <a href="https://apps.apple.com/us/app/uber-eats-food-delivery/id1058959277">
+                <img alt="Download on the App Store" role="img" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/783bb4a82e5be29e.svg" loading="lazy" decoding="async" height="40" width="135">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.ubercab.eats&pli=1">
+                <img alt="Get it on Google Play" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/163bdc9b0f1e7c9e.png" loading="lazy" decoding="async" height="40" width="134">
+            </a>
+        </div>
+    </div>
+
+    <div class="rightSide">
+        <a href="">Get Help</a>
+        <a href="">Buy Gift Cards</a>
+        <a href="">Add your Restaurant</a>
+        <a href="">Sign up to deliver</a>
+        <a href="">Create a business account</a>
+        <a href="">Promotions</a>
+    </div>
+    <div class="rightSideLinks">
+        <a href="">Restaurants near me</a>
+        <a href="">View all cities</a>
+        <a href="">View all countries</a>
+        <a href="">Pickup near me</a>
+        <a href="">About Uber eats</a>
+        <a href="">English</a>
+    </div>
+    
+</div>
+
+<hr>
+
+<div class="copyrights">
+    <div class="privacy">
+        <a href="https://www.uber.com/legal/en/document/?country=united-states&lang=en&name=privacy-notice">Privacy Policy</a>
+        <a href="https://www.uber.com/legal/en/document/?name=general-terms-of-use&country=canada&lang=en">Terms</a>
+        <a href="https://help.uber.com/ubereats/restaurants/article/uber-eats-pricing?nodeId=2adbed88-9822-4690-9529-3061c4821755">Pricing</a>
+        <a href="https://privacy.uber.com/privacy/california/">Do not sell or share my personal information</a>
+    </div>
+    <div class="security">
+        This site is protected by reCAPTCHA and the Google<a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+        <p>&copy; 2024 Uber Technologies Inc.</p>
+    </div>
+</div>
+</footer>
+
+
+    <script>
+
+        function initAutocomplete() {
+            const input = document.getElementById('searchInput');
+            const searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const script = document.createElement('script');
+            script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyALhiRT7P-TNj7sif4ZfpEDUlIkprGrBBs&libraries=places&callback=initAutocomplete";
+            script.defer = true;
+            document.head.appendChild(script);
+        });
+
+        function loginPage(){
+            window.location.href="login.html";
+        }
+
+        function SignupPage(){
+            window.location.href="signup.html";
+        }
+
+        function SearchRestaurant(){
+            
+            window.location.href = "restaurants.html";
+            let userInput = document.getElementById('searchInput').value;
+            localStorage.setItem("address", userInput);
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+        var list = document.querySelector('.ListCountries');
+        var items = Array.from(list.children);
+
+        items.sort(function(a, b) {
+            return a.textContent.localeCompare(b.textContent);
+        });
+
+        items.forEach(function(item) {
+            list.appendChild(item);
+        });
+    });  
+
+    </script>
+    
+</body>
+</html>

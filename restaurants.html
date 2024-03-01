@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        .nav-bar p{
+            margin-left:150px;
+            margin-top: 20px;
+            font-size: 1.8em;
+        }
+        .nav-bar{
+            display: flex;         
+            align-items: center;               
+            justify-content: space-evenly;
+        }
+        .nav-bar #cart{
+            background-color: black;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: none;
+            margin-top: 30px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .nav-bar .loginButtons{
+            display: flex;
+            margin-right: 20px;
+            margin-top: 30px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .nav-bar .loginButtons #login{
+            color: black;
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: none;
+            margin-right: 10px;
+        }
+        .nav-bar .loginButtons #signup{
+            color: black;
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: none;
+        }
+        .nav-bar input[type=text]{
+            background-color: lightgray;
+            color: black;
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: none;
+            margin-top: 20px;
+        }
+        .nav-bar #location{
+            background-color: lightgray;
+            color: black;
+            border-radius: 25px;
+            padding: 10px 40px;
+            border: none;    
+            margin-top: 20px;         
+        }
+        .nav-bar .btns{
+            display: flex;
+            overflow: hidden;
+            border-radius: 30px;
+            margin-top: 20px;
+        }
+        .nav-bar .btns #pick{
+            background-color: lightgray;
+            border: none;
+            padding: 10px 20px;
+            font-size: medium;
+        }
+        .nav-bar .btns #pick:not(:last-child) {
+            border-right: solid thin #ccc; /* Add a thin line between buttons */
+        }
+        .FoodOptions{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .FoodOptions ul {
+            display: flex;
+           justify-content: center;
+        }
+        .FoodOptions ul li{
+            list-style: none;
+            margin: 20px;
+        }
+        .viewMore .arrow{
+            justify-content: center;            
+            align-items: center;
+            display: inline-flex;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+            background-color: lightgray;
+            opacity: 0.3;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            &.darker, &:hover{
+                opacity: 1;
+            }
+        }
+        .FoodOptions img{
+            width:50px;
+        }
+        .ExtraButtons{
+            margin-left: 20px;
+        }
+        .ExtraButtons button{
+            color: black;
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: none;
+        }
+        .delivery-fee-popup {
+            display: none; /* Initially hidden */
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .delivery-fee-option {
+            margin: 5px;
+            cursor: pointer;
+        }
+        .delivery-fee-option:hover {
+            background-color: #e0e0e0;
+        }
+        hr{
+            margin-top: 15px;
+            width: 95%;            
+            color: lightgray;
+            margin-left: 30px;
+        }
+        .TodaysOffer-heading{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        .TodaysOffer-heading p{
+            font-size: 1.7rem;
+        }
+        .TodaysOffer-heading .viewMore{
+            display: flex;
+            margin-top: 20px;
+            align-items: center;
+        }
+        .services{
+            margin-left: 20px;
+            margin-top: 20px;
+            color: lightslategray;
+            font-size: 15px;
+        }
+        .services a{
+            text-decoration: underline;
+            color: lightslategray;
+        }
+        .TodayOffer{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 15px;
+        }
+
+        .TodayOffer img{
+            width:300px;
+            border-radius: 12px;
+            height: 150px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .photos1 .heading-rating{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .photos1 .heading-rating p{
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+        }
+        .photos1 .time{
+            font-family: 'Poppins', sans-serif;
+            color:#ac9d9d;
+        }
+        .photos1 .rating{
+            justify-content: center;            
+            align-items: center;
+            display: inline-flex;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: lightgray;
+        }
+        .PopularNearYou-heading{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        .PopularNearYou-heading p{
+            font-size: 1.7rem;
+        }
+        .PopularNearYou-heading .viewMore{
+            display: flex;
+            margin-top: 20px;
+            align-items: center;
+        }
+        .PopularNearYou{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 15px;
+        }
+
+        .PopularNearYou img{
+            width:300px;
+            border-radius: 12px;
+            height: 150px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .WalletFriendly-heading{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        .WalletFriendly-heading p{
+            font-size: 1.7rem;
+        }
+        .WalletFriendly-heading .viewMore{
+            display: flex;
+            margin-top: 20px;
+            align-items: center;
+        }
+        .WalletFriendly{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 15px;
+        }
+
+        .WalletFriendly img{
+            width:300px;
+            border-radius: 12px;
+            height: 150px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .GetGroceries-heading{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        .GetGroceries-heading p{
+            font-size: 1.7rem;
+        }
+        .GetGroceries-heading .viewMore{
+            display: flex;
+            margin-top: 20px;
+            align-items: center;
+        }
+        .Groceries{
+            display: flex;
+        }
+        .Walmart{
+            width: 30%;
+            background-color: pink;
+            height: 300px;
+            border-radius: 20px;
+            background-color: #f0e5e6; /* Light pink background */
+            padding: 20px;
+            margin-left: 20px;
+        }
+        .Walmart .Wimg{
+            display: flex;
+            justify-content: center;
+            width: 240px;
+            align-items: center;
+        }
+        .Walmart .Wimg img{
+            width: 240px;
+            margin-left: 160px;
+        }
+        .Walmart .details{
+            margin-top: 50px;
+        }
+        .Walmart .details ul li{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        .lcbo{
+            width: 30%;
+            background-color: pink;
+            height: 300px;
+            border-radius: 20px;
+            background-color: #f0e5e6; /* Light pink background */
+            padding: 20px;
+            margin-left: 20px;
+        }
+        .lcbo .Wimg{
+            display: flex;
+            justify-content: center;
+            width: 240px;
+            align-items: center;
+        }
+        .lcbo .Wimg img{
+            width: 240px;
+            margin-left: 160px;
+        }
+        .lcbo .details{
+            margin-top: 50px;
+        }
+        .lcbo .details ul li{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        .FoodBasics{
+            width: 30%;
+            background-color: pink;
+            height: 300px;
+            border-radius: 20px;
+            background-color: #f0e5e6; /* Light pink background */
+            padding: 20px;
+            margin-left: 20px;
+            margin-right:20px ;
+        }
+        .FoodBasics .Wimg{
+            display: flex;
+            justify-content: center;
+            width: 240px;
+            align-items: center;
+        }
+        .FoodBasics .Wimg img{
+            width: 240px;
+            margin-left: 160px;
+        }
+        .FoodBasics .details{
+            margin-top: 50px;
+        }
+        .FoodBasics .details ul li{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        .NationalBrands-heading{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        .NationalBrands-heading p{
+            font-size: 1.7rem;
+        }
+        .NationalBrands{
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 15px;
+            
+        }
+        .NationalBrands img{
+            width:300px;
+            border-radius: 12px;
+            height: 150px;
+            font-family: 'Poppins', sans-serif;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+        .footer-class{
+            display: flex;
+            height: 250px;
+            margin-bottom:30px;
+        }
+        .leftSide{
+            display: flex;
+            margin: 40px 50px;
+            justify-content: space-between;
+        }
+        .linksfordownload{
+            display: flex;
+            margin-top: 160px;
+            margin-left: -149px;
+            gap:20px;
+
+        }
+        .rightSide{
+            margin-left : 250px;
+            margin-top : 50px;
+            display: grid;
+            row-gap: 5px;
+            
+        }
+        .rightSide a{
+           text-decoration: none;
+           color: black;
+           float: right;
+           font-family: 'Poppins', sans-serif;
+        }
+        .rightSideLinks{
+            margin-left : 150px;
+            margin-top : 50px;
+            display: grid;
+            row-gap: 5px;
+        }
+        .rightSideLinks a{
+           text-decoration: none;
+           color:black;
+           float: right;
+           font-family: 'Poppins', sans-serif;
+        }
+        .privacy{
+            display: flex;
+            gap: 10px;
+            justify-content: end;
+            margin-top:20px;
+            margin-bottom: 12px;
+            margin-right: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
+        .privacy a{
+            text-decoration: none;
+            color:black;            
+        }
+        .security{
+            display: flex;
+            justify-content: end;
+            gap: 5px;
+            margin-right: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+        }
+        .security a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-bar">
+            <p>Uber Eats</p>
+            <div class="space1" style="width: 24px;"></div>
+            <div class="btns">
+                <button id="pick">Delivery</button>
+                <button id="pick">Pickup</button>
+            </div>
+            <div class="space2" style="width: 16px;"></div>
+            <button id="location" >Location</button>
+            <input type="text" placeholder="Food, Groceries, Drinks ....">
+            <button id="cart">Cart</button>
+            <div class="loginButtons">
+            <button id="login">login</button>
+            <button id="signup">signup</button>
+        </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="FoodOptions">
+            <ul>                
+                <li><img src="./images/grocery.png" alt="">Grocery</li>
+                <li><img src="./images/pizza.png" alt=""> Pizza</li>
+                <li><img src="./images/sushi.png" alt="">Sushi</li>
+                <li><img src="./images/Indian.png" alt="">Indian</li>
+                <li><img src="https://img.icons8.com/dusk/64/chocolate-ice-cream.png" alt="chocolate-ice-cream"/>Desserts</li>
+                <li><img src="https://img.icons8.com/fluency/48/chinese-noodle.png" alt="chinese-noodle"/>Chinese</li>
+                <li><img src="https://img.icons8.com/matisse/100/bubble-tea.png" alt="bubble-tea"/>Bubble Tea</li>
+                <li><img src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/external-chicken-wings-food-levitation-icongeek26-flat-icongeek26.png" alt="external-chicken-wings-food-levitation-icongeek26-flat-icongeek26"/>Wings</li>
+                <li><img src="https://img.icons8.com/external-icongeek26-flat-icongeek26/64/external-Halal-Food-ramadan-icongeek26-flat-icongeek26.png" alt="external-Halal-Food-ramadan-icongeek26-flat-icongeek26"/>Halal</li>
+                <li><img src="https://img.icons8.com/external-justicon-flat-justicon/64/external-thai-food-thailand-element-justicon-flat-justicon.png" alt="external-thai-food-thailand-element-justicon-flat-justicon"/>Thai</li>
+                <li><img src="https://img.icons8.com/emoji/48/french-fries-emoji.png" alt="french-fries-emoji"/>Fast Food</li>
+                <li><img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-healthy-food-vegan-and-vegetarian-flaticons-lineal-color-flat-icons-2.png" alt="external-healthy-food-vegan-and-vegetarian-flaticons-lineal-color-flat-icons-2"/>Healthy</li>
+                <!-- <li><img src="https://img.icons8.com/external-others-pike-picture/50/external-all12-korea-others-pike-picture.png" alt="external-all12-korea-others-pike-picture"/>Korean</li> -->
+            </ul>
+            <div class="viewMore">
+                <span class="arrow Left"><i data-feather="arrow-left"></i></span>
+                <span class="arrow Right darker"><i data-feather="arrow-right"></i></span>
+            </div>
+        </div>
+
+        <div class="ExtraButtons">
+            <button>Offers</button>
+            <button onclick="showDeliveryFeePopup()">Delievery Fees</button>
+            <div class="delivery-fee-popup">
+                <div class="delivery-fee-option">$2</div>
+                <div class="delivery-fee-option">$4</div>
+                <div class="delivery-fee-option">$6</div>
+                <div class="delivery-fee-option">$6+</div>
+            </div>
+            <button>Under 30 mins</button>
+            <button>Best Overall</button>
+            <button>Rating</button>
+            <button>Price</button>
+            <button>Dietary</button>
+            <button>Sort</button>
+        </div>
+
+        <div class="services">
+            Services Fees apply to delivery orders.<a href="">Learn more</a>
+        </div>
+
+        <div class="TodaysOffer-heading">
+            <p style="font-family: 'Poppins', sans-serif;">Today's Offer</p>            
+            <div class="viewMore">
+            <span class="heading" style="margin-right: 40px;">see all</span>
+            <span class="arrow Left"><i data-feather="arrow-left"></i></span>
+            <span class="arrow Right darker"><i data-feather="arrow-right"></i></span>
+        </div>
+        </div>
+
+        <div class="TodayOffer">
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/5c5b8cc0a4f77222bc1bce5a1931a9d0/a70f5c9df440d10213e93244e9eb7cad.jpeg" alt="">
+                <div class="heading-rating">
+                <p class="heading">Pizza Pizza (225 Prince Mich...</p>
+                <span class="rating">4.6</span></div>
+                <div class="time">10-15 min</div>
+            </div>
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/dfe02883e79cd8d5013b47421dd1680a/e39556ef1e4c4565bc6c7dbd8b90869c.jpeg" alt="">
+                <div class="heading-rating">
+                    <p class="heading">Church's Texas Chicken (25...</p>
+                    <span class="rating">4.2</span></div>
+                    <div class="time">15-35 min</div>
+            </div>
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/e1244ff68a32fe72d9ee6345c724dcf6/97ef7458dde62fa918635bc21265d9f5.jpeg" alt="">
+                <div class="heading-rating">
+                    <p class="heading">A&W (Walkers Line)</p>
+                    <span class="rating">4.3</span></div>
+                    <div class="time">50-65 min</div>
+            </div>
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/f47c52546002d30ed04fd3f3918b7b48/7915c4a78a9f94ed56316c7c4dc0ec89.jpeg" alt="">
+                <div class="heading-rating">
+                    <p class="heading">Quesada Burritos and Tacos...</p>
+                    <span class="rating">4.5</span></div>
+                    <div class="time">15-30 min</div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="PopularNearYou-heading">
+            <p style="font-family: 'Poppins', sans-serif;">Popular Near You</p>            
+            <div class="viewMore">
+            <span class="heading" style="margin-right: 40px;">see all</span>
+            <span class="arrow Left"><i data-feather="arrow-left"></i></span>
+            <span class="arrow Right darker"><i data-feather="arrow-right"></i></span>
+        </div>
+        </div>
+
+        <div class="PopularNearYou">
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/627265a4a5b1f0cb0adeefffc8b911a1/e39556ef1e4c4565bc6c7dbd8b90869c.jpeg" alt="">
+                <div class="heading-rating">
+                <p class="heading">WingsUp! (Oakville Speers)</p>
+                <span class="rating">4.4</span></div>
+                <div class="time">10-25 min</div>
+            </div>
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/dfe02883e79cd8d5013b47421dd1680a/e39556ef1e4c4565bc6c7dbd8b90869c.jpeg" alt="">
+                <div class="heading-rating">
+                    <p class="heading">Church's Texas Chicken (25...</p>
+                    <span class="rating">4.2</span></div>
+                    <div class="time">15-35 min</div>
+            </div>
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/0591fd9feb0902e7448f3152c772fff1/e39556ef1e4c4565bc6c7dbd8b90869c.jpeg" alt="">
+                <div class="heading-rating">
+                    <p class="heading">Subway (1540 North Service..</p>
+                    <span class="rating">4.3</span></div>
+                    <div class="time">50-65 min</div>
+            </div>
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/f47c52546002d30ed04fd3f3918b7b48/7915c4a78a9f94ed56316c7c4dc0ec89.jpeg" alt="">
+                <div class="heading-rating">
+                    <p class="heading">Quesada Burritos and Tacos...</p>
+                    <span class="rating">4.5</span></div>
+                    <div class="time">15-30 min</div>
+            </div>
+        </div>
+
+        
+        <hr>
+        <div class="WalletFriendly-heading">
+            <p style="font-family: 'Poppins', sans-serif;">Wallet Friendly</p>            
+            <div class="viewMore">
+            <span class="heading" style="margin-right: 40px;">see all</span>
+            <span class="arrow Left"><i data-feather="arrow-left"></i></span>
+            <span class="arrow Right darker"><i data-feather="arrow-right"></i></span>
+        </div>
+        </div>
+
+        <div class="WalletFriendly">
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/109a235a659150717071c72edd3bb7e2/e39556ef1e4c4565bc6c7dbd8b90869c.jpeg" alt="">
+                <div class="heading-rating">
+                <p class="heading">Burger King(3295 Fairview.</p>
+                <span class="rating">3.9</span></div>
+                <div class="time">20-35 min</div>
+            </div>
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/78c3eaf68c1fa5af936c68e20812ced1/61e8d264e9409914f90881b13f54d0ac.jpeg" alt="">
+                <div class="heading-rating">
+                    <p class="heading">Nawab's Legendary BBQ</p>
+                    <span class="rating">4.2</span></div>
+                    <div class="time">40-55 min</div>
+            </div>
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/0591fd9feb0902e7448f3152c772fff1/e39556ef1e4c4565bc6c7dbd8b90869c.jpeg" alt="">
+                <div class="heading-rating">
+                    <p class="heading">Subway (1540 North Service..</p>
+                    <span class="rating">4.3</span></div>
+                    <div class="time">50-65 min</div>
+            </div>
+            <div class="photos1">
+                <img src="https://tb-static.uber.com/prod/image-proc/processed_images/f47c52546002d30ed04fd3f3918b7b48/7915c4a78a9f94ed56316c7c4dc0ec89.jpeg" alt="">
+                <div class="heading-rating">
+                    <p class="heading">Quesada Burritos and Tacos...</p>
+                    <span class="rating">4.5</span></div>
+                    <div class="time">15-30 min</div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="GetGroceries-heading">
+            <p style="font-family: 'Poppins', sans-serif;">Get Groceries and more</p>            
+            <div class="viewMore">
+            <span class="heading" style="margin-right: 40px;">see all</span>
+            <span class="arrow Left"><i data-feather="arrow-left"></i></span>
+            <span class="arrow Right darker"><i data-feather="arrow-right"></i></span>
+        </div>
+        </div>
+
+        <div class="Groceries">
+        <div class="Walmart">
+            <div class="Wimg"><img src="https://tb-static.uber.com/prod/image-proc/processed_images/f8fabba071e7fa3d434c18ed1e52ec70/cdbf718e74f23061854f430977faed8b.png" alt=""></div>
+            <div class="details"><ul>
+                <li style="font-size: 1.2em;">Walmart</li>
+                <li style="color: #565656;">Available at 7.00 a.m.</li>
+                <li style="color: #309330;">Offers Available</li>
+            </ul>
+            </div>
+        </div>
+
+        
+        <div class="lcbo">
+            <div class="Wimg"><img src="https://tb-static.uber.com/prod/image-proc/processed_images/7c8819f82d353ded179a2393c03a258d/cdbf718e74f23061854f430977faed8b.png"  alt=""></div>
+            <div class="details"><ul>
+                <li style="font-size: 1.2em;">LCBO</li>
+                <li style="color: #565656;">Available at 10.00 a.m.</li>
+                <li style="color: #309330;">Offers Available</li>
+            </ul>
+            </div>
+        </div>
+
+        
+        <div class="FoodBasics">
+            <div class="Wimg"><img src="https://tb-static.uber.com/prod/image-proc/processed_images/c104474ef558648899fe962cbd612176/cdbf718e74f23061854f430977faed8b.png" alt=""></div>
+            <div class="details"><ul>
+                <li style="font-size: 1.2em;">Food Basics</li>
+                <li style="color: #565656;">Available at 8.00 a.m.</li>
+                <li style="color: #309330;">Offers Available</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="NationalBrands-heading">
+        <p style="font-family: 'Poppins', sans-serif;">National Brands</p>            
+        <div class="viewMore">
+        <span class="heading" style="margin-right: 40px;">see all</span>
+    </div>
+    </div>
+
+    <div class="NationalBrands">
+        <div class="photos1">
+            <img src="https://tb-static.uber.com/prod/image-proc/processed_images/109a235a659150717071c72edd3bb7e2/e39556ef1e4c4565bc6c7dbd8b90869c.jpeg" alt="">
+            <div class="heading-rating">
+            <p class="heading">Burger King(3295 Fairview.</p>
+            <span class="rating">3.9</span></div>
+            <div class="time">20-35 min</div>
+        </div>
+        <div class="photos1">
+            <img src="https://tb-static.uber.com/prod/image-proc/processed_images/78c3eaf68c1fa5af936c68e20812ced1/61e8d264e9409914f90881b13f54d0ac.jpeg" alt="">
+            <div class="heading-rating">
+                <p class="heading">Nawab's Legendary BBQ</p>
+                <span class="rating">4.2</span></div>
+                <div class="time">40-55 min</div>
+        </div>
+        <div class="photos1">
+            <img src="https://tb-static.uber.com/prod/image-proc/processed_images/0591fd9feb0902e7448f3152c772fff1/e39556ef1e4c4565bc6c7dbd8b90869c.jpeg" alt="">
+            <div class="heading-rating">
+                <p class="heading">Subway (1540 North Service..</p>
+                <span class="rating">4.3</span></div>
+                <div class="time">50-65 min</div>
+        </div>
+    </div>
+
+    </main>
+
+    <hr>
+    
+    <footer>
+        <div class="footer-class">
+        <div class="leftSide">
+            <img alt="Uber Eats" role="img" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/97c43f8974e6c876.svg" width="146" height="24">
+            <div class="linksfordownload">
+                <a href="https://apps.apple.com/us/app/uber-eats-food-delivery/id1058959277">
+                    <img alt="Download on the App Store" role="img" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/783bb4a82e5be29e.svg" loading="lazy" decoding="async" height="40" width="135">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.ubercab.eats&pli=1">
+                    <img alt="Get it on Google Play" src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/163bdc9b0f1e7c9e.png" loading="lazy" decoding="async" height="40" width="134">
+                </a>
+            </div>
+        </div>
+    
+        <div class="rightSide">
+            <a href="">Get Help</a>
+            <a href="">Buy Gift Cards</a>
+            <a href="">Add your Restaurant</a>
+            <a href="">Sign up to deliver</a>
+            <a href="">Create a business account</a>
+            <a href="">Promotions</a>
+        </div>
+        <div class="rightSideLinks">
+            <a href="">Restaurants near me</a>
+            <a href="">View all cities</a>
+            <a href="">View all countries</a>
+            <a href="">Pickup near me</a>
+            <a href="">About Uber eats</a>
+            <a href="">English</a>
+        </div>
+        
+    </div>
+    <hr>
+    
+    <div class="copyrights">
+        <div class="privacy">
+            <a href="https://www.uber.com/legal/en/document/?country=united-states&lang=en&name=privacy-notice">Privacy Policy</a>
+            <a href="https://www.uber.com/legal/en/document/?name=general-terms-of-use&country=canada&lang=en">Terms</a>
+            <a href="https://help.uber.com/ubereats/restaurants/article/uber-eats-pricing?nodeId=2adbed88-9822-4690-9529-3061c4821755">Pricing</a>
+            <a href="https://privacy.uber.com/privacy/california/">Do not sell or share my personal information</a>
+        </div>
+        <div class="security">
+            This site is protected by reCAPTCHA and the Google<a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+            <p>&copy; 2024 Uber Technologies Inc.</p>
+        </div>
+    </div>
+    </footer>
+
+
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+         feather.replace();
+
+         function showDeliveryFeePopup() {
+            const popup = document.querySelector('.delivery-fee-popup');
+            popup.style.display = 'block';
+        }
+
+        var address = localStorage.getItem("address");
+        document.getElementById("location").innerHTML = address;
+    </script>
+</body>
+</html>
